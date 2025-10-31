@@ -1,0 +1,76 @@
+RewriteEngine On
+RewriteBase /artuniverse/
+
+# Garantir que o arquivo ou diretório não exista
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+RewriteEngine On
+RewriteBase /artuniverse/
+
+# Redirecionar "/reset_password/TOKEN" para "reset_password/index.php?token=TOKEN"
+RewriteRule ^reset_password/([\w-]+)$ reset_password/index.php?token=$1 [QSA,L]
+
+
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^logout/?$ logout.php [L]
+
+
+
+# Redirecionar para a página do perfil do usuário
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^([^/]+)/?$ profile.php?username=$1 [L]
+
+# Redirecionar para a página de vídeos do usuário
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^([^/]+)/videos$ profile.php?username=$1&view=videos [L]
+
+# Redirecionar para a página de imagens do usuário
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^([^/]+)/images$ profile.php?username=$1&view=images [L]
+
+# Redirecionar para a página de audios do usuário
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^([^/]+)/musics$ profile.php?username=$1&view=musics [L]
+
+# Redirecionar para a página do conteudo audio visual
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^watch/([\w-]+)$ watch/index.php?id_content=$1 [QSA,L]
+
+# Redirecionar para a página do conteudo visual
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^view/([\w-]+)$ view/index.php?id_content=$1 [QSA,L]
+
+# Redirecionar para a página do conteudo visual
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^edit/video/([\w-]+)$ edit/video/index.php?id_content=$1 [QSA,L]
+RewriteRule ^edit/audio/([\w-]+)$ edit/audio/index.php?id_content=$1 [QSA,L]
+RewriteRule ^edit/photo/([\w-]+)$ edit/photo/index.php?id_content=$1 [QSA,L]
+
+# Redirecionar para a página do conteudo da playlist
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^playlist/([\w.-]+)$ playlist/playlistItem.php?id_name=$1 [QSA,L]
+
+# Redirecionar para a página do conteudo salvo
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^saved/([\w.-]+)$ saved/savefolder.php?id_name=$1 [QSA,L]
+
+# Redirecionar para a página do conteudo salvo
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^settings/archive/videos$ settings/archive/index.php?type=videos [QSA,L]
+RewriteRule ^settings/archive/photos$ settings/archive/index.php?type=photos [QSA,L]
+RewriteRule ^settings/archive/song$ settings/archive/index.php?type=song [QSA,L]
+
+ErrorDocument 404 /artuniverse/not_found.php

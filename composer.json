@@ -1,0 +1,17 @@
+{
+    "name": "gabriel/artuniverse",
+    "autoload": {
+        "psr-4": {
+            "Gabriel\\Artuniverse\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "gabriell-c",
+            "email": "gabri3lcardoso07@gmail.com"
+        }
+    ],
+    "require": {
+        "phpmailer/phpmailer": "^6.9"
+    }
+}
